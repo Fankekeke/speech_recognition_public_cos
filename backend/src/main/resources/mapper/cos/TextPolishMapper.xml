@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.febs.cos.dao.TextPolishMapper">
+
+    <select id="queryTextPolishByVoiceId" resultType="cc.mrbird.febs.cos.entity.TextPolish"
+            parameterType="java.lang.Integer">
+        SELECT
+            tb.*,
+            any_value(tr.speaker_id) as speaker_id
+        FROM
+            (
+                SELECT
+                    *,
+                    SUBSTRING_INDEX( sentence_ids, ",", 1 ) AS sentenceId
+                FROM
+                    text_polish
+                WHERE
+                    voice_id = #{voiceId}) tb left join transcription_record tr on tb.sentenceId = sentence_id
+        GROUP BY id
+    </select>
+</mapper>

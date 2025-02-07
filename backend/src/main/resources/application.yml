@@ -1,0 +1,5 @@
+server:
+  port: 9520
+spring:
+  profiles:
+    active: prd

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.febs.cos.dao.VoiceAnalysisRecordMapper">
+
+    <!-- 分页获取语音解析记录信息 -->
+    <select id="selectAnalysisRecordPage" resultType="java.util.LinkedHashMap">
+        SELECT id,
+        `code`,
+        task_id,
+        file_name,
+        total_time,
+        file_url,
+        `status`,
+        deal_status,
+        create_date,
+        resolve_date,
+        remark,
+        key_word,
+        del_flag,
+        voice_size,
+        voice_duration,
+        sample_rate,
+        `language`,
+        paragraph_summary,
+        paragraph_title,
+        paragraph_title,
+        process_status,
+        phone,
+        connection_time,
+
+        complaint_people_feature,
+        operator_people_feature,
+        complaint_speak_id,
+        operator_speak_id
+
+        FROM voice_analysis_record
+        WHERE 1 = 1
+        <if test="voiceAnalysisRecord.fileName != null and voiceAnalysisRecord.fileName != ''">
+            AND file_name LIKE CONCAT('%',#{voiceAnalysisRecord.fileName},'%')
+        </if>
+        <if test="voiceAnalysisRecord.keyWord != null and voiceAnalysisRecord.keyWord != ''">
+            AND key_word LIKE CONCAT('%',#{voiceAnalysisRecord.keyWord},'%')
+        </if>
+        ORDER BY create_date DESC
+    </select>
+</mapper>
