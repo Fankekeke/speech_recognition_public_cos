@@ -37,6 +37,8 @@ WebStorm OR VScode 编译器 [https://www.jianshu.com/p/d63b5bae9dff]
 admin
 1234qwer
 
+>系统登录，语音在线录制，语音上传解析，原文内容解析，章节速览解析，发言总结，问答回顾，思维导图
+
 #### 项目截图
 暂无
 
